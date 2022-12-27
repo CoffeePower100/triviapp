@@ -11,7 +11,7 @@ const start_trivia_func = () => {
 const Greeting = () => {
     return(
         <View style={Style.container}>
-            <ImageBackground source = {require("../../utilis/trivia_images/splash_logo.png")} resizeMode = "cover">
+            <ImageBackground style = {Style.screen_background} source = {require("../../utilis/trivia_images/splash_logo.png")} resizeMode = "cover">
                 <TouchableOpacity style = {Style.greeting_button} onPress= {start_trivia_func}>
                     <Text>Play</Text>
                 </TouchableOpacity>

@@ -7,7 +7,6 @@ export default StyleSheet.create({
         padding:30
     },
     greeting_button: {
-        alignItems:'bottom',
         paddingVertical:15,
         borderRadius:12,
         backgroundColor: Colors.yellow,
@@ -16,5 +15,8 @@ export default StyleSheet.create({
     container: {
         flex:1, backgroundColor:Colors.bg,
         padding:30
+    },
+    screen_background: {
+        flex: 1
     }
 })
