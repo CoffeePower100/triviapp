@@ -2,20 +2,14 @@ import React, {useEffect, useCallback, useState} from 'react'
 import { View, Text, TouchableOpacity, ImageBackground} from 'react-native';
 import Style from '../../utilis/AppStyle';
 
-const start_trivia_func = () => {
-
-
-    navigation.navigate('questions');
-}
-
-const Greeting = () => {
+const Greeting = ({navigation}) => { 
     return(
         <View style={Style.container}>
-            <ImageBackground source = {require("../../utilis/trivia_images/splash_logo.png")} resizeMode = "cover">
-                <TouchableOpacity style = {Style.greeting_button} onPress= {start_trivia_func}>
-                    <Text>Play</Text>
-                </TouchableOpacity>
+            <ImageBackground style = {Style.greeting_background} source = {require("../../utilis/trivia_images/splash_logo.png")}>
             </ImageBackground>
+            <TouchableOpacity style = {Style.greeting_button} onPress= {() => {navigation.navigate('questions');}}>
+                    <Text>Play</Text>
+            </TouchableOpacity>
         </View>
     )
 }
