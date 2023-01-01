@@ -1,20 +1,18 @@
-import React, {useEffect, useCallback, useState} from 'react'
+import React, {useEffect,useCallback, useState} from 'react'
 import { View, Text, TouchableOpacity, FlatList} from 'react-native';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import Style from '../../utilis/AppStyle';
 
 
 // fetch questions from api:
-const fetch_questions =  () => {
+
+/*
+const prepare_questions =  () => {
   let i, j = 0;
   let currAnswersArr = [];
-      const url = "https://opentdb.com/api.php?amount=20&category=18";
-      const request = fetch(url, {
-          method: 'get'
-      })
-      .then(questionsData => {
-      console.log(questionsData.json());
-      const questionsRes = questionsData.json().results;
+      questionsData => {
+      console.log(JSON.stringify(questionsData));
+      console.log("getched");
+      const questionsRes = questionsData.results;
       const createdQuestionsArr = [];
       for (i = 0; i < questionsRes.length; i++)
       {
@@ -39,20 +37,31 @@ const fetch_questions =  () => {
       console.log(createdQuestionsArr[0]);
       setQuestionsArr(createdQuestionsArr);
       setAnswersArr((questionsArr.length) ? (questionsArr[0].answersArr) : ([{id: 0, answerText: "No questions found"}]));
-    })
-    .catch(error => 
-    {
-      throw new Error(error.message);
-    })
-  }
+    }
+  }*/
 
 const QuestionsPart = ({navigation}) => {
   const [questionsArr, setQuestionsArr] = useState([])
   const [answersArr, setAnswersArr] = useState([]);
   /*{id: 1, questionText: "QUESTION number 1"}*/
-  fetch_questions();
+  
+  const fetchQuestions = async() => {
+    const url = "https://opentdb.com/api.php?amount=20&category=18";
+    const response = await fetch(url, {
+        method: 'get',
+        headers: {
+          "Content-Type": "application/json"
+        }
+    })
+    
+  setQuestionsArr(await response.json());
+  }
+
+  fetchQuestions();
+
   return(
         <View style={Style.container}>
+            <Text>{questionsArr}</Text>
             <FlatList
               data={answersArr}
               keyExtractor={item => item.id}
@@ -62,11 +71,5 @@ const QuestionsPart = ({navigation}) => {
     )
 }
 
-/*
-AsyncStorage.setItem('Account', JSON.stringify({
-              }));
-    return 
-}
-*/
 
 export default QuestionsPart;
