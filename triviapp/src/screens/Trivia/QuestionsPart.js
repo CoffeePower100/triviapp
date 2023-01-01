@@ -13,8 +13,8 @@ const fetch_questions =  () => {
           method: 'get'
       })
       .then(questionsData => {
-      console.log(request.json());
-      const questionsRes = request.json().results;
+      console.log(questionsData.json());
+      const questionsRes = questionsData.json().results;
       const createdQuestionsArr = [];
       for (i = 0; i < questionsRes.length; i++)
       {
